@@ -7,11 +7,12 @@
   "ioValues": [
     {
       "name": "BowAngle",
-      "ioValue": 0
+      "ioValue": 29
     },
     {
       "name": "SternAngle",
-      "ioValue": 10
+      "ioValue": 15,
+      "currentEquation": "15"
     },
     {
       "name": "StationPositions",
@@ -3119,7 +3120,50 @@
               "ioValue": 4
             }
           ],
-          "placements": []
+          "placements": [
+            [
+              {
+                "id": 3,
+                "rotate": 0,
+                "translate": {
+                  "x": 5.469849521685996,
+                  "y": 22.39753380818464
+                }
+              },
+              {
+                "id": 0,
+                "rotate": 90,
+                "translate": {
+                  "x": 22.934853083797687,
+                  "y": 39.31611534325472
+                }
+              },
+              {
+                "id": 2,
+                "rotate": 180,
+                "translate": {
+                  "x": 23.001553700898103,
+                  "y": 21.89320687645737
+                }
+              },
+              {
+                "id": 1,
+                "rotate": 270,
+                "translate": {
+                  "x": 34.85100361442248,
+                  "y": -5.718837548604749
+                }
+              },
+              {
+                "id": 4,
+                "rotate": 180,
+                "translate": {
+                  "x": 37.60290442589475,
+                  "y": 25.964640418464505
+                }
+              }
+            ]
+          ]
         },
         {
           "atomType": "Input",
@@ -3179,21 +3223,13 @@
               ]
             },
             {
-              "name": "Beam",
-              "ioValue": 50.539521275481725
-            },
-            {
-              "name": "KeelHeight",
-              "ioValue": 22.42106896753238
-            },
-            {
               "name": "BowAngle",
-              "ioValue": 0,
+              "ioValue": 29,
               "currentEquation": "BowAngle"
             },
             {
               "name": "TransamAngle",
-              "ioValue": 10,
+              "ioValue": 15,
               "currentEquation": "SternAngle"
             }
           ],
@@ -3215,17 +3251,7 @@
               "atomType": "Rectangle",
               "x": 0.15169270833333334,
               "y": 0.37714285714285717,
-              "uniqueID": "id-9279",
-              "ioValues": [
-                {
-                  "name": "x length",
-                  "ioValue": 22.42106896753238
-                },
-                {
-                  "name": "y length",
-                  "ioValue": 50.539521275481725
-                }
-              ]
+              "uniqueID": "id-9279"
             },
             {
               "atomType": "Extrude",
@@ -3706,7 +3732,7 @@
                 },
                 {
                   "name": "Y",
-                  "ioValue": 0,
+                  "ioValue": -29,
                   "currentEquation": "-BowAngle"
                 },
                 {
@@ -3752,7 +3778,7 @@
                     },
                     {
                       "name": "y",
-                      "ioValue": 0
+                      "ioValue": -29
                     },
                     {
                       "name": "z",
@@ -4224,7 +4250,7 @@
                 },
                 {
                   "name": "Y",
-                  "ioValue": 10,
+                  "ioValue": 15,
                   "currentEquation": "TransamAngle"
                 },
                 {
@@ -4270,7 +4296,7 @@
                     },
                     {
                       "name": "y",
-                      "ioValue": 10
+                      "ioValue": 15
                     },
                     {
                       "name": "z",
@@ -4738,11 +4764,6 @@
                 {
                   "name": "yDist",
                   "ioValue": 0
-                },
-                {
-                  "name": "zDist",
-                  "ioValue": 11.21053448376619,
-                  "currentEquation": "KeelHeight / 2"
                 }
               ]
             }
@@ -4842,94 +4863,6 @@
           "fileTypeVersion": 1
         },
         {
-          "atomType": "GitHubMolecule",
-          "x": 0.185546875,
-          "y": 0.7342857142857142,
-          "uniqueID": "id-27303",
-          "name": "Width",
-          "ioValues": [
-            {
-              "name": "Shape",
-              "ioValue": "__GEOMETRY_INPUT__"
-            }
-          ],
-          "topLevel": false,
-          "allAtoms": [
-            {
-              "atomType": "Output",
-              "x": 0.98,
-              "y": 0.5,
-              "uniqueID": "id-27300",
-              "ioValues": [
-                {
-                  "name": "number or geometry",
-                  "ioValue": "__GEOMETRY_INPUT__"
-                }
-              ]
-            },
-            {
-              "atomType": "Input",
-              "x": 0.025384615384615384,
-              "y": 0.15384615384615385,
-              "uniqueID": "id-27301",
-              "name": "Shape",
-              "type": "geometry"
-            },
-            {
-              "atomType": "Code",
-              "x": 0.380178716490658,
-              "y": 0.47632311977715874,
-              "uniqueID": "id-27302",
-              "ioValues": [
-                {
-                  "name": "A",
-                  "ioValue": "__GEOMETRY_INPUT__"
-                }
-              ],
-              "interpreterVersion": 0,
-              "code": "/**\n Inputs for this Code Atom:\n - Takes a single geometry input \"A\" and returns its width (X size) as measured by the bounding box.\n*/\nInputs = [\n  { inputName: \"A\", type: \"geometry\", defaultValue: null }\n]\n\nif (!A) {\n  // No input provided — return null to indicate absence.\n  return null\n}\n\n// Get bounding box of A. boundsA.min and boundsA.max are arrays [x, y, z]\nlet boundsA = await GetBounds(A);\nlet min = boundsA.min;\nlet max = boundsA.max;\n\n// Compute width along X (maxX - minX)\nlet width = max[0] - min[0];\n\n// Ensure a non-negative numeric result\nwidth = typeof width === 'number' && isFinite(width) ? Math.max(0, width) : null;\n\nreturn width;"
-            }
-          ],
-          "allConnectors": [
-            {
-              "ap2Name": "A",
-              "ap1ID": "id-27301",
-              "ap2ID": "id-27302"
-            },
-            {
-              "ap2Name": "number or geometry",
-              "ap1ID": "id-27302",
-              "ap2ID": "id-27300"
-            }
-          ],
-          "parentRepo": {
-            "lastFoundGit": "2026-05-29T10:23:39.125Z",
-            "privateRepo": false,
-            "repoName": "Width",
-            "dateCreated": "2025-12-04T20:14:11Z",
-            "likes": 0,
-            "readMe": "https://raw.githubusercontent.com/BarbourSmith/Width/master/README.md?sanitize=true",
-            "yyyy": 2025,
-            "topMoleculeID": "id-386",
-            "githubMoleculesUsed": [],
-            "html_url": "https://github.com/BarbourSmith/Width",
-            "topics": [],
-            "parentRepo": null,
-            "forks": 0,
-            "dateModified": "739589",
-            "ranking": 0.6,
-            "searchField": "width barboursmith takes a shape and returns the width as measured by the shapes bounding box in the x direction ",
-            "owner": "BarbourSmith",
-            "description": "Takes a shape and returns the width as measured by the shapes bounding box in the X direction",
-            "contentURL": "https://raw.githubusercontent.com/BarbourSmith/Width/master/project.abundance?sanitize=true",
-            "svgURL": "https://raw.githubusercontent.com/BarbourSmith/Width/master/project.svg?sanitize=true",
-            "isLocal": false
-          },
-          "unitsKey": "MM",
-          "fileTypeVersion": 1,
-          "lastReloadedFromGithubAt": 1780078737246
-        },
-        {
           "atomType": "Rotate",
           "x": 0.11783854166666667,
           "y": 0.8657142857142858,
@@ -4957,9 +4890,9 @@
         },
         {
           "atomType": "GitHubMolecule",
-          "x": 0.17903645833333331,
-          "y": 0.9085714285714286,
-          "uniqueID": "id-27335",
+          "x": 0.185546875,
+          "y": 0.7342857142857142,
+          "uniqueID": "id-27353",
           "name": "Width",
           "ioValues": [
             {
@@ -4973,7 +4906,7 @@
               "atomType": "Output",
               "x": 0.98,
               "y": 0.5,
-              "uniqueID": "id-27332",
+              "uniqueID": "id-27350",
               "ioValues": [
                 {
                   "name": "number or geometry",
@@ -4985,7 +4918,7 @@
               "atomType": "Input",
               "x": 0.025384615384615384,
               "y": 0.15384615384615385,
-              "uniqueID": "id-27333",
+              "uniqueID": "id-27351",
               "name": "Shape",
               "type": "geometry"
             },
@@ -4993,7 +4926,7 @@
               "atomType": "Code",
               "x": 0.380178716490658,
               "y": 0.47632311977715874,
-              "uniqueID": "id-27334",
+              "uniqueID": "id-27352",
               "ioValues": [
                 {
                   "name": "A",
@@ -5007,13 +4940,13 @@
           "allConnectors": [
             {
               "ap2Name": "A",
-              "ap1ID": "id-27333",
-              "ap2ID": "id-27334"
+              "ap1ID": "id-27351",
+              "ap2ID": "id-27352"
             },
             {
               "ap2Name": "number or geometry",
-              "ap1ID": "id-27334",
-              "ap2ID": "id-27332"
+              "ap1ID": "id-27352",
+              "ap2ID": "id-27350"
             }
           ],
           "parentRepo": {
@@ -5041,7 +4974,95 @@
           },
           "unitsKey": "MM",
           "fileTypeVersion": 1,
-          "lastReloadedFromGithubAt": 1780078796796
+          "lastReloadedFromGithubAt": 1780079070108
+        },
+        {
+          "atomType": "GitHubMolecule",
+          "x": 0.17903645833333331,
+          "y": 0.9085714285714286,
+          "uniqueID": "id-27366",
+          "name": "Width",
+          "ioValues": [
+            {
+              "name": "Shape",
+              "ioValue": "__GEOMETRY_INPUT__"
+            }
+          ],
+          "topLevel": false,
+          "allAtoms": [
+            {
+              "atomType": "Output",
+              "x": 0.98,
+              "y": 0.5,
+              "uniqueID": "id-27363",
+              "ioValues": [
+                {
+                  "name": "number or geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ]
+            },
+            {
+              "atomType": "Input",
+              "x": 0.025384615384615384,
+              "y": 0.15384615384615385,
+              "uniqueID": "id-27364",
+              "name": "Shape",
+              "type": "geometry"
+            },
+            {
+              "atomType": "Code",
+              "x": 0.380178716490658,
+              "y": 0.47632311977715874,
+              "uniqueID": "id-27365",
+              "ioValues": [
+                {
+                  "name": "A",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ],
+              "interpreterVersion": 0,
+              "code": "/**\n Inputs for this Code Atom:\n - Takes a single geometry input \"A\" and returns its width (X size) as measured by the bounding box.\n*/\nInputs = [\n  { inputName: \"A\", type: \"geometry\", defaultValue: null }\n]\n\nif (!A) {\n  // No input provided — return null to indicate absence.\n  return null\n}\n\n// Get bounding box of A. boundsA.min and boundsA.max are arrays [x, y, z]\nlet boundsA = await GetBounds(A);\nlet min = boundsA.min;\nlet max = boundsA.max;\n\n// Compute width along X (maxX - minX)\nlet width = max[0] - min[0];\n\n// Ensure a non-negative numeric result\nwidth = typeof width === 'number' && isFinite(width) ? Math.max(0, width) : null;\n\nreturn width;"
+            }
+          ],
+          "allConnectors": [
+            {
+              "ap2Name": "A",
+              "ap1ID": "id-27364",
+              "ap2ID": "id-27365"
+            },
+            {
+              "ap2Name": "number or geometry",
+              "ap1ID": "id-27365",
+              "ap2ID": "id-27363"
+            }
+          ],
+          "parentRepo": {
+            "lastFoundGit": "2026-05-29T10:23:39.125Z",
+            "privateRepo": false,
+            "repoName": "Width",
+            "dateCreated": "2025-12-04T20:14:11Z",
+            "likes": 0,
+            "readMe": "https://raw.githubusercontent.com/BarbourSmith/Width/master/README.md?sanitize=true",
+            "yyyy": 2025,
+            "topMoleculeID": "id-386",
+            "githubMoleculesUsed": [],
+            "html_url": "https://github.com/BarbourSmith/Width",
+            "topics": [],
+            "parentRepo": null,
+            "forks": 0,
+            "dateModified": "739589",
+            "ranking": 0.6,
+            "searchField": "width barboursmith takes a shape and returns the width as measured by the shapes bounding box in the x direction ",
+            "owner": "BarbourSmith",
+            "description": "Takes a shape and returns the width as measured by the shapes bounding box in the X direction",
+            "contentURL": "https://raw.githubusercontent.com/BarbourSmith/Width/master/project.abundance?sanitize=true",
+            "svgURL": "https://raw.githubusercontent.com/BarbourSmith/Width/master/project.svg?sanitize=true",
+            "isLocal": false
+          },
+          "unitsKey": "MM",
+          "fileTypeVersion": 1,
+          "lastReloadedFromGithubAt": 1780079071849
         }
       ],
       "allConnectors": [
@@ -5081,14 +5102,14 @@
           "ap2ID": "id-9275"
         },
         {
-          "ap2Name": "Shape",
-          "ap1ID": "id-26605",
-          "ap2ID": "id-27303"
-        },
-        {
           "ap2Name": "geometry",
           "ap1ID": "id-26605",
           "ap2ID": "id-27313"
+        },
+        {
+          "ap2Name": "Shape",
+          "ap1ID": "id-26605",
+          "ap2ID": "id-27353"
         },
         {
           "ap2Name": "geometry1",
@@ -5096,18 +5117,18 @@
           "ap2ID": "id-9267"
         },
         {
+          "ap2Name": "Shape",
+          "ap1ID": "id-27313",
+          "ap2ID": "id-27366"
+        },
+        {
           "ap2Name": "Beam",
-          "ap1ID": "id-27303",
+          "ap1ID": "id-27353",
           "ap2ID": "id-9275"
         },
         {
-          "ap2Name": "Shape",
-          "ap1ID": "id-27313",
-          "ap2ID": "id-27335"
-        },
-        {
           "ap2Name": "KeelHeight",
-          "ap1ID": "id-27335",
+          "ap1ID": "id-27366",
           "ap2ID": "id-9275"
         }
       ],
@@ -5126,6 +5147,11 @@
       "ap2ID": "id-21144"
     },
     {
+      "ap2Name": "HullShape",
+      "ap1ID": "id-25958",
+      "ap2ID": "id-21144"
+    },
+    {
       "ap2Name": "geometry",
       "ap1ID": "id-12247",
       "ap2ID": "id-25945"
@@ -5134,11 +5160,6 @@
       "ap2Name": "geometry",
       "ap1ID": "id-12247",
       "ap2ID": "id-25951"
-    },
-    {
-      "ap2Name": "HullShape",
-      "ap1ID": "id-12247",
-      "ap2ID": "id-21144"
     },
     {
       "ap2Name": "Lines",
