@@ -113,7 +113,7 @@
       "uniqueID": "id-25958",
       "name": "HullModel",
       "type": "import",
-      "fileName": null,
+      "fileName": "Kayak.step",
       "fileSha": null,
       "fileType": "STEP",
       "repoOwner": null,
@@ -3308,50 +3308,7 @@
               "ioValue": 4
             }
           ],
-          "placements": [
-            [
-              {
-                "id": 3,
-                "rotate": 0,
-                "translate": {
-                  "x": 5.469849521685996,
-                  "y": 22.39753380818464
-                }
-              },
-              {
-                "id": 0,
-                "rotate": 90,
-                "translate": {
-                  "x": 22.934853083797687,
-                  "y": 39.31611534325472
-                }
-              },
-              {
-                "id": 2,
-                "rotate": 180,
-                "translate": {
-                  "x": 23.001553700898103,
-                  "y": 21.89320687645737
-                }
-              },
-              {
-                "id": 1,
-                "rotate": 270,
-                "translate": {
-                  "x": 34.85100361442248,
-                  "y": -5.718837548604749
-                }
-              },
-              {
-                "id": 4,
-                "rotate": 180,
-                "translate": {
-                  "x": 37.60290442589475,
-                  "y": 25.964640418464505
-                }
-              }
-            ]
-          ]
+          "placements": []
         },
         {
           "atomType": "Input",
@@ -3464,6 +3421,14 @@
               ]
             },
             {
+              "name": "Beam",
+              "ioValue": 22.006204377164998
+            },
+            {
+              "name": "KeelHeight",
+              "ioValue": 12.566486846297071
+            },
+            {
               "name": "BowAngle",
               "ioValue": 29,
               "currentEquation": "BowAngle"
@@ -3492,7 +3457,17 @@
               "atomType": "Rectangle",
               "x": 0.15169270833333334,
               "y": 0.37714285714285717,
-              "uniqueID": "id-9279"
+              "uniqueID": "id-9279",
+              "ioValues": [
+                {
+                  "name": "x length",
+                  "ioValue": 12.566486846297071
+                },
+                {
+                  "name": "y length",
+                  "ioValue": 22.006204377164998
+                }
+              ]
             },
             {
               "atomType": "Extrude",
@@ -3692,6 +3667,10 @@
                 {
                   "name": "yDist",
                   "ioValue": 0
+                },
+                {
+                  "name": "zDist",
+                  "ioValue": 6.2832434231485355
                 }
               ]
             },
@@ -5007,6 +4986,20 @@
               "unitsKey": "Unitless",
               "fileTypeVersion": 1,
               "lastReloadedFromGithubAt": 1780097032089
+            },
+            {
+              "atomType": "Equation",
+              "x": 0.15494791666666666,
+              "y": 0.7942857142857144,
+              "uniqueID": "id-30504",
+              "name": "x /2",
+              "ioValues": [
+                {
+                  "name": "x",
+                  "ioValue": 12.566486846297071
+                }
+              ],
+              "currentEquation": "x /2"
             }
           ],
           "allConnectors": [
@@ -5044,6 +5037,11 @@
               "ap2Name": "x length",
               "ap1ID": "id-14138",
               "ap2ID": "id-9279"
+            },
+            {
+              "ap2Name": "x",
+              "ap1ID": "id-14138",
+              "ap2ID": "id-30504"
             },
             {
               "ap2Name": "geometry",
@@ -5099,6 +5097,11 @@
               "ap2Name": "Shape 2",
               "ap1ID": "id-29879",
               "ap2ID": "id-14779"
+            },
+            {
+              "ap2Name": "zDist",
+              "ap1ID": "id-30504",
+              "ap2ID": "id-9282"
             }
           ],
           "fileTypeVersion": 1
