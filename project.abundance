@@ -2798,7 +2798,7 @@
           "atomType": "GitHubMolecule",
           "x": 0.28645833333333337,
           "y": 0.7971428571428572,
-          "uniqueID": "id-21197",
+          "uniqueID": "id-28581",
           "name": "util.ShellNoTop",
           "ioValues": [
             {
@@ -2816,7 +2816,7 @@
               "atomType": "Output",
               "x": 0.98,
               "y": 0.5,
-              "uniqueID": "id-21193",
+              "uniqueID": "id-28577",
               "ioValues": [
                 {
                   "name": "number or geometry",
@@ -2828,7 +2828,7 @@
               "atomType": "Input",
               "x": 0.025384615384615384,
               "y": 0.15384615384615385,
-              "uniqueID": "id-21194",
+              "uniqueID": "id-28578",
               "name": "Shape",
               "type": "geometry"
             },
@@ -2836,14 +2836,14 @@
               "atomType": "Input",
               "x": 0.025384615384615384,
               "y": 0.24615384615384617,
-              "uniqueID": "id-21195",
+              "uniqueID": "id-28579",
               "name": "Thickness"
             },
             {
               "atomType": "Code",
               "x": 0.4251302083333333,
               "y": 0.5742857142857143,
-              "uniqueID": "id-21196",
+              "uniqueID": "id-28580",
               "ioValues": [
                 {
                   "name": "geom",
@@ -2862,18 +2862,18 @@
           "allConnectors": [
             {
               "ap2Name": "geom",
-              "ap1ID": "id-21194",
-              "ap2ID": "id-21196"
+              "ap1ID": "id-28578",
+              "ap2ID": "id-28580"
             },
             {
               "ap2Name": "thickness",
-              "ap1ID": "id-21195",
-              "ap2ID": "id-21196"
+              "ap1ID": "id-28579",
+              "ap2ID": "id-28580"
             },
             {
               "ap2Name": "number or geometry",
-              "ap1ID": "id-21196",
-              "ap2ID": "id-21193"
+              "ap1ID": "id-28580",
+              "ap2ID": "id-28577"
             }
           ],
           "parentRepo": {
@@ -2901,7 +2901,7 @@
           },
           "unitsKey": "Unitless",
           "fileTypeVersion": 1,
-          "lastReloadedFromGithubAt": 1780007349011
+          "lastReloadedFromGithubAt": 1780085957958
         }
       ],
       "allConnectors": [
@@ -2913,7 +2913,7 @@
         {
           "ap2Name": "Shape",
           "ap1ID": "id-21148",
-          "ap2ID": "id-21197"
+          "ap2ID": "id-28581"
         },
         {
           "ap2Name": "geometry",
@@ -2928,7 +2928,7 @@
         {
           "ap2Name": "Thickness",
           "ap1ID": "id-21189",
-          "ap2ID": "id-21197"
+          "ap2ID": "id-28581"
         },
         {
           "ap2Name": "number or geometry",
@@ -2937,7 +2937,7 @@
         },
         {
           "ap2Name": "remove",
-          "ap1ID": "id-21197",
+          "ap1ID": "id-28581",
           "ap2ID": "id-21154"
         }
       ],
@@ -3227,6 +3227,10 @@
               ]
             },
             {
+              "name": "KeelHeight",
+              "ioValue": 22.42106896753238
+            },
+            {
               "name": "BowAngle",
               "ioValue": 29,
               "currentEquation": "BowAngle"
@@ -3255,7 +3259,13 @@
               "atomType": "Rectangle",
               "x": 0.15169270833333334,
               "y": 0.37714285714285717,
-              "uniqueID": "id-9279"
+              "uniqueID": "id-9279",
+              "ioValues": [
+                {
+                  "name": "x length",
+                  "ioValue": 22.42106896753238
+                }
+              ]
             },
             {
               "atomType": "Extrude",
@@ -3454,6 +3464,10 @@
                 },
                 {
                   "name": "yDist",
+                  "ioValue": 0
+                },
+                {
+                  "name": "zDist",
                   "ioValue": 0
                 }
               ]
@@ -4949,14 +4963,14 @@
       "ap2ID": "id-21144"
     },
     {
-      "ap2Name": "HullShape",
-      "ap1ID": "id-25958",
-      "ap2ID": "id-21144"
-    },
-    {
       "ap2Name": "geometry",
       "ap1ID": "id-12247",
       "ap2ID": "id-25945"
+    },
+    {
+      "ap2Name": "HullShape",
+      "ap1ID": "id-12247",
+      "ap2ID": "id-21144"
     },
     {
       "ap2Name": "Lines",
