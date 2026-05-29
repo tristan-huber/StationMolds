@@ -29,7 +29,7 @@
       "ioValue": 0.25
     },
     {
-      "name": "Input",
+      "name": "HullModel",
       "ioValue": "__GEOMETRY_INPUT__"
     }
   ],
@@ -161,6 +161,7 @@
       "x": 0.025384615384615384,
       "y": 0.6371428571428571,
       "uniqueID": "id-25958",
+      "name": "HullModel",
       "type": "import",
       "fileName": null,
       "fileSha": null,

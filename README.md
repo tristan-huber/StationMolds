@@ -10,7 +10,7 @@
 - **SternAngle** (number)
 - **StationPositions** (array)
 - **HullMaterialThickness** (number)
-- **Input** (geometry)
+- **HullModel** (geometry)
 
 
 
