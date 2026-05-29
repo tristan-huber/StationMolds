@@ -16,16 +16,23 @@
     {
       "name": "StationPositions",
       "ioValue": [
-        "-47.25",
-        "-24",
-        "0",
-        "24",
-        "47.125"
+        "2",
+        "20",
+        "40",
+        "60",
+        "80",
+        "100",
+        "120",
+        "140",
+        "160",
+        "180",
+        "200"
       ]
     },
     {
       "name": "HullMaterialThickness",
-      "ioValue": 0.25
+      "ioValue": 0.25,
+      "currentEquation": "0.25"
     },
     {
       "name": "HullModel",
@@ -3194,11 +3201,17 @@
         {
           "name": "StationPositions",
           "ioValue": [
-            "-47.25",
-            "-24",
-            "0",
-            "24",
-            "47.125"
+            "2",
+            "20",
+            "40",
+            "60",
+            "80",
+            "100",
+            "120",
+            "140",
+            "160",
+            "180",
+            "200"
           ]
         },
         {
@@ -3384,6 +3397,44 @@
           "compiledCode": "\"use strict\";\n/**\n * =========================================================================\n *  ABUNDANCE CODE ATOM — Quick Reference\n * =========================================================================\n *\n *  HOW INPUTS WORK\n *  ---------------\n *  Every parameter of run() becomes an input port on this atom.\n *  Four types are supported:\n *\n *    number   -> numeric input / slider\n *    string   -> text input  (great for hex color codes, labels, etc.)\n *    boolean  -> true/false toggle\n *    Assembly -> geometry -- wire this to the output of another atom\n *\n *  Give a parameter a default value ( = x ) to make it optional.\n *  Mark it with ? (name?: Assembly) to make it optional with no default.\n *  Parameters without a default must be connected before the atom runs.\n *\n *  RETURN VALUE\n *  ------------\n *  Return an Assembly, an Assembly[], or a primitive (number/string/boolean).\n *  Returning an Assembly[] lets downstream atoms (BOM, cut layout...)\n *  see each piece independently.\n *\n *  GEOMETRY API  (replicad is available as a global)\n *  -------------------------------------------------\n *  Create 2-D sketches\n *    replicad.drawCircle(radius)\n *    replicad.drawRectangle(width, height)\n *    replicad.drawRoundedRectangle(width, height, cornerRadius)\n *\n *  Turn a 2-D sketch into a 3-D solid\n *    sketch.sketchOnPlane().extrude(distance)\n *    sketch.sketchOnPlane().revolve()          // rotate 360 deg around Z\n *\n *  Create 3-D primitives directly\n *    replicad.makeBaseBox(width, depth, height)\n *    replicad.makeSphere(radius)\n *    replicad.makeCylinder(radius, height)\n *\n *  Boolean operations\n *    solidA.fuse(solidB)                       // union\n *    solidA.cut(solidB)                        // difference (cut a hole)\n *    solidA.intersect(solidB)                  // intersection\n *\n *  Post-processing\n *    solid.fillet(radius)                      // round ALL edges\n *    solid.fillet(r, e => e.inPlane(\"XY\", z))  // round only top-face edges\n *    solid.chamfer(distance)                   // bevel ALL edges\n *    solid.translate(x, y, z)                  // move the solid\n *    solid.rotate(angle, [0, 0, 1])            // rotate around Z axis\n *\n *  ASSEMBLY CLASS\n *  --------------\n *  Wrap any replicad solid in an Assembly to attach display metadata:\n *    new Assembly({ geometry, color, tags, bom })\n *      geometry -> replicad solid / drawing returned by the API above\n *      color    -> hex string shown in the 3-D viewport  (\"#A3CE5B\")\n *      tags     -> string[] used for filtering in cut layout / BOM\n *      bom      -> string[] lines added to the Bill of Materials panel\n *\n *  AI PROMPT TIP\n *  -------------\n *  Copy the code in this editor into ChatGPT / Claude and say something like:\n *    \"Modify this Abundance Code Atom to create a gear with 12 teeth\"\n *    \"Change this to make a hexagonal nut instead of a round plate\"\n *  The comments above give the AI all the context it needs to produce\n *  valid, working Abundance TypeScript code.\n * =========================================================================\n */\n/**\n * A rectangular mounting plate with a circular hole in the centre.\n * All parameters have defaults so the atom produces geometry immediately\n * after creation — no connections required to get started.\n */\nfunction run(shape) {\n    let xmin = Infinity;\n    let xmax = -Infinity;\n    shape.onLeafs((leaf) => {\n        let leafxmin = undefined;\n        let leafxmax = undefined;\n        if (leaf.is2D() || leaf.is3D() || leaf.isWire()) {\n            leafxmin = leaf.geometry.boundingBox.bounds[0][0];\n            leafxmax = leaf.geometry.boundingBox.bounds[1][0];\n        }\n        else if (leaf.isPoint()) {\n            leafxmax = leaf.geometry.asTuple()[0];\n            leafxmin = leafxmax;\n        }\n        if (leafxmax == undefined || leafxmin == undefined) {\n            throw new Error(\"leaf without bounds\");\n        }\n        xmin = Math.min(leafxmin, xmin);\n        xmax = Math.max(leafxmax, xmax);\n    });\n    return Math.abs(xmax - xmin);\n}\n"
         },
         {
+          "atomType": "Move",
+          "x": 0.5442708333333334,
+          "y": 0.7171428571428571,
+          "uniqueID": "id-30508",
+          "ioValues": [
+            {
+              "name": "geometry",
+              "ioValue": "__GEOMETRY_INPUT__"
+            },
+            {
+              "name": "xDist",
+              "ioValue": 0
+            },
+            {
+              "name": "yDist",
+              "ioValue": 33.009306565747494
+            },
+            {
+              "name": "zDist",
+              "ioValue": 0
+            }
+          ]
+        },
+        {
+          "atomType": "Equation",
+          "x": 0.43033854166666663,
+          "y": 0.8085714285714286,
+          "uniqueID": "id-30514",
+          "name": "x * 1.5",
+          "ioValues": [
+            {
+              "name": "x",
+              "ioValue": 22.006204377164998
+            }
+          ],
+          "currentEquation": "x * 1.5"
+        },
+        {
           "atomType": "Molecule",
           "x": 0.3899739583333333,
           "y": 0.4828571428571429,
@@ -3393,11 +3444,17 @@
             {
               "name": "StationPositions",
               "ioValue": [
-                "-47.25",
-                "-24",
-                "0",
-                "24",
-                "47.125"
+                "2",
+                "20",
+                "40",
+                "60",
+                "80",
+                "100",
+                "120",
+                "140",
+                "160",
+                "180",
+                "200"
               ]
             },
             {
@@ -3655,6 +3712,20 @@
               ]
             },
             {
+              "atomType": "Equation",
+              "x": 0.15494791666666666,
+              "y": 0.7942857142857144,
+              "uniqueID": "id-30504",
+              "name": "x /2",
+              "ioValues": [
+                {
+                  "name": "x",
+                  "ioValue": 12.566486846297071
+                }
+              ],
+              "currentEquation": "x /2"
+            },
+            {
               "atomType": "GitHubMolecule",
               "x": 0.38476562500000006,
               "y": 0.16285714285714284,
@@ -3668,11 +3739,17 @@
                 {
                   "name": "offsets",
                   "ioValue": [
-                    "-47.25",
-                    "-24",
-                    "0",
-                    "24",
-                    "47.125"
+                    "2",
+                    "20",
+                    "40",
+                    "60",
+                    "80",
+                    "100",
+                    "120",
+                    "140",
+                    "160",
+                    "180",
+                    "200"
                   ]
                 },
                 {
@@ -3736,11 +3813,17 @@
                     {
                       "name": "offsets",
                       "ioValue": [
-                        "-47.25",
-                        "-24",
-                        "0",
-                        "24",
-                        "47.125"
+                        "2",
+                        "20",
+                        "40",
+                        "60",
+                        "80",
+                        "100",
+                        "120",
+                        "140",
+                        "160",
+                        "180",
+                        "200"
                       ]
                     },
                     {
@@ -3933,18 +4016,14 @@
             },
             {
               "atomType": "GitHubMolecule",
-              "x": 0.6315104166666667,
-              "y": 0.4685714285714285,
+              "x": 0.6302083333333334,
+              "y": 0.5628571428571428,
               "uniqueID": "id-16099",
               "name": "util.RotateAround",
               "ioValues": [
                 {
                   "name": "PivotPoint",
-                  "ioValue": [
-                    "47.125",
-                    "0",
-                    "5"
-                  ]
+                  "ioValue": 10
                 },
                 {
                   "name": "X",
@@ -3986,11 +4065,7 @@
                     },
                     {
                       "name": "pivotPoint",
-                      "ioValue": [
-                        "47.125",
-                        "0",
-                        "5"
-                      ]
+                      "ioValue": 10
                     },
                     {
                       "name": "x",
@@ -4458,11 +4533,7 @@
               "ioValues": [
                 {
                   "name": "PivotPoint",
-                  "ioValue": [
-                    "-47.25",
-                    "0",
-                    "5"
-                  ]
+                  "ioValue": 10
                 },
                 {
                   "name": "X",
@@ -4504,11 +4575,7 @@
                     },
                     {
                       "name": "pivotPoint",
-                      "ioValue": [
-                        "-47.25",
-                        "0",
-                        "5"
-                      ]
+                      "ioValue": 10
                     },
                     {
                       "name": "x",
@@ -4966,20 +5033,6 @@
               "unitsKey": "Unitless",
               "fileTypeVersion": 1,
               "lastReloadedFromGithubAt": 1780097032089
-            },
-            {
-              "atomType": "Equation",
-              "x": 0.15494791666666666,
-              "y": 0.7942857142857144,
-              "uniqueID": "id-30504",
-              "name": "x /2",
-              "ioValues": [
-                {
-                  "name": "x",
-                  "ioValue": 12.566486846297071
-                }
-              ],
-              "currentEquation": "x /2"
             }
           ],
           "allConnectors": [
@@ -5064,6 +5117,11 @@
               "ap2ID": "id-14102"
             },
             {
+              "ap2Name": "zDist",
+              "ap1ID": "id-30504",
+              "ap2ID": "id-9282"
+            },
+            {
               "ap2Name": "shape",
               "ap1ID": "id-14102",
               "ap2ID": "id-14692"
@@ -5077,52 +5135,9 @@
               "ap2Name": "Shape 2",
               "ap1ID": "id-29879",
               "ap2ID": "id-14779"
-            },
-            {
-              "ap2Name": "zDist",
-              "ap1ID": "id-30504",
-              "ap2ID": "id-9282"
             }
           ],
           "fileTypeVersion": 1
-        },
-        {
-          "atomType": "Move",
-          "x": 0.5442708333333334,
-          "y": 0.7171428571428571,
-          "uniqueID": "id-30508",
-          "ioValues": [
-            {
-              "name": "geometry",
-              "ioValue": "__GEOMETRY_INPUT__"
-            },
-            {
-              "name": "xDist",
-              "ioValue": 0
-            },
-            {
-              "name": "yDist",
-              "ioValue": 33.009306565747494
-            },
-            {
-              "name": "zDist",
-              "ioValue": 0
-            }
-          ]
-        },
-        {
-          "atomType": "Equation",
-          "x": 0.43033854166666663,
-          "y": 0.8085714285714286,
-          "uniqueID": "id-30514",
-          "name": "x * 1.5",
-          "ioValues": [
-            {
-              "name": "x",
-              "ioValue": 22.006204377164998
-            }
-          ],
-          "currentEquation": "x * 1.5"
         }
       ],
       "allConnectors": [
@@ -5192,11 +5207,6 @@
           "ap2ID": "id-9275"
         },
         {
-          "ap2Name": "geometry1",
-          "ap1ID": "id-9275",
-          "ap2ID": "id-9267"
-        },
-        {
           "ap2Name": "Shape 3",
           "ap1ID": "id-30508",
           "ap2ID": "id-13267"
@@ -5205,6 +5215,11 @@
           "ap2Name": "yDist",
           "ap1ID": "id-30514",
           "ap2ID": "id-30508"
+        },
+        {
+          "ap2Name": "geometry1",
+          "ap1ID": "id-9275",
+          "ap2ID": "id-9267"
         }
       ],
       "fileTypeVersion": 1
