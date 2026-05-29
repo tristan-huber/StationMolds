@@ -3230,8 +3230,8 @@
         },
         {
           "atomType": "Intersection",
-          "x": 0.6158854166666666,
-          "y": 0.21714285714285714,
+          "x": 0.61328125,
+          "y": 0.20285714285714287,
           "uniqueID": "id-9267",
           "ioValues": [
             {
@@ -3253,30 +3253,10 @@
             {
               "name": "Shape 2",
               "ioValue": null
-            }
-          ]
-        },
-        {
-          "atomType": "Move",
-          "x": 0.7408854166666666,
-          "y": 0.8057142857142858,
-          "uniqueID": "id-13271",
-          "ioValues": [
-            {
-              "name": "geometry",
-              "ioValue": "__GEOMETRY_INPUT__"
             },
             {
-              "name": "xDist",
-              "ioValue": 0
-            },
-            {
-              "name": "yDist",
-              "ioValue": 0
-            },
-            {
-              "name": "zDist",
-              "ioValue": -5
+              "name": "Shape 3",
+              "ioValue": null
             }
           ]
         },
@@ -5105,6 +5085,44 @@
             }
           ],
           "fileTypeVersion": 1
+        },
+        {
+          "atomType": "Move",
+          "x": 0.5442708333333334,
+          "y": 0.7171428571428571,
+          "uniqueID": "id-30508",
+          "ioValues": [
+            {
+              "name": "geometry",
+              "ioValue": "__GEOMETRY_INPUT__"
+            },
+            {
+              "name": "xDist",
+              "ioValue": 0
+            },
+            {
+              "name": "yDist",
+              "ioValue": 33.009306565747494
+            },
+            {
+              "name": "zDist",
+              "ioValue": 0
+            }
+          ]
+        },
+        {
+          "atomType": "Equation",
+          "x": 0.43033854166666663,
+          "y": 0.8085714285714286,
+          "uniqueID": "id-30514",
+          "name": "x * 1.5",
+          "ioValues": [
+            {
+              "name": "x",
+              "ioValue": 22.006204377164998
+            }
+          ],
+          "currentEquation": "x * 1.5"
         }
       ],
       "allConnectors": [
@@ -5119,14 +5137,14 @@
           "ap2ID": "id-26605"
         },
         {
+          "ap2Name": "geometry",
+          "ap1ID": "id-5827",
+          "ap2ID": "id-30508"
+        },
+        {
           "ap2Name": "Shape 2",
           "ap1ID": "id-9267",
           "ap2ID": "id-13267"
-        },
-        {
-          "ap2Name": "number or geometry",
-          "ap1ID": "id-9267",
-          "ap2ID": "id-5825"
         },
         {
           "ap2Name": "geometry",
@@ -5134,9 +5152,9 @@
           "ap2ID": "id-14806"
         },
         {
-          "ap2Name": "geometry",
+          "ap2Name": "number or geometry",
           "ap1ID": "id-13267",
-          "ap2ID": "id-13271"
+          "ap2ID": "id-5825"
         },
         {
           "ap2Name": "StationPositions",
@@ -5164,6 +5182,11 @@
           "ap2ID": "id-9275"
         },
         {
+          "ap2Name": "x",
+          "ap1ID": "id-27972",
+          "ap2ID": "id-30514"
+        },
+        {
           "ap2Name": "KeelHeight",
           "ap1ID": "id-27982",
           "ap2ID": "id-9275"
@@ -5172,6 +5195,16 @@
           "ap2Name": "geometry1",
           "ap1ID": "id-9275",
           "ap2ID": "id-9267"
+        },
+        {
+          "ap2Name": "Shape 3",
+          "ap1ID": "id-30508",
+          "ap2ID": "id-13267"
+        },
+        {
+          "ap2Name": "yDist",
+          "ap1ID": "id-30514",
+          "ap2ID": "id-30508"
         }
       ],
       "fileTypeVersion": 1
