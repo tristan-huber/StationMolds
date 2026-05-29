@@ -6,8 +6,8 @@
 
 ## Inputs
 
-- **BowDist** (number)
-- **SternDist** (number)
+- **BowAngle** (number)
+- **SternAngle** (number)
 - **StationPositions** (array)
 - **HullMaterialThickness** (number)
 - **Input** (geometry)
