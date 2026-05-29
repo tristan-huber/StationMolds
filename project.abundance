@@ -113,7 +113,7 @@
       "uniqueID": "id-25958",
       "name": "HullModel",
       "type": "import",
-      "fileName": "ToroHullStep.step",
+      "fileName": null,
       "fileSha": null,
       "fileType": "STEP",
       "repoOwner": null,
@@ -3227,14 +3227,6 @@
               ]
             },
             {
-              "name": "Beam",
-              "ioValue": 50.539521275481
-            },
-            {
-              "name": "KeelHeight",
-              "ioValue": 22.42106896753262
-            },
-            {
               "name": "BowAngle",
               "ioValue": 29,
               "currentEquation": "BowAngle"
@@ -3263,17 +3255,7 @@
               "atomType": "Rectangle",
               "x": 0.15169270833333334,
               "y": 0.37714285714285717,
-              "uniqueID": "id-9279",
-              "ioValues": [
-                {
-                  "name": "x length",
-                  "ioValue": 22.42106896753262
-                },
-                {
-                  "name": "y length",
-                  "ioValue": 50.539521275481
-                }
-              ]
+              "uniqueID": "id-9279"
             },
             {
               "atomType": "Extrude",
@@ -3476,8 +3458,7 @@
                 },
                 {
                   "name": "zDist",
-                  "ioValue": 11.21053448376631,
-                  "currentEquation": "KeelHeight / 2"
+                  "ioValue": 0
                 }
               ]
             },
@@ -4888,22 +4869,6 @@
             }
           ],
           "fileTypeVersion": 1
-        },
-        {
-          "atomType": "Rectangle",
-          "x": 0.37565104166666663,
-          "y": 0.8114285714285715,
-          "uniqueID": "id-29199",
-          "ioValues": [
-            {
-              "name": "x length",
-              "ioValue": 50.539521275481
-            },
-            {
-              "name": "y length",
-              "ioValue": 22.42106896753262
-            }
-          ]
         }
       ],
       "allConnectors": [
@@ -4963,19 +4928,9 @@
           "ap2ID": "id-9275"
         },
         {
-          "ap2Name": "x length",
-          "ap1ID": "id-27972",
-          "ap2ID": "id-29199"
-        },
-        {
           "ap2Name": "KeelHeight",
           "ap1ID": "id-27982",
           "ap2ID": "id-9275"
-        },
-        {
-          "ap2Name": "y length",
-          "ap1ID": "id-27982",
-          "ap2ID": "id-29199"
         },
         {
           "ap2Name": "geometry1",
@@ -4984,142 +4939,6 @@
         }
       ],
       "fileTypeVersion": 1
-    },
-    {
-      "atomType": "GitHubMolecule",
-      "x": 0.4388020833333333,
-      "y": 0.8257142857142857,
-      "uniqueID": "id-29182",
-      "name": "Scale",
-      "ioValues": [
-        {
-          "name": "Scale Factor",
-          "ioValue": 1.5,
-          "currentEquation": "1.5"
-        }
-      ],
-      "topLevel": false,
-      "allAtoms": [
-        {
-          "atomType": "Output",
-          "x": 0.98,
-          "y": 0.5,
-          "uniqueID": "id-29178",
-          "ioValues": [
-            {
-              "name": "number or geometry",
-              "ioValue": "__GEOMETRY_INPUT__"
-            }
-          ]
-        },
-        {
-          "atomType": "Input",
-          "x": 0.025384615384615384,
-          "y": 0.15384615384615385,
-          "uniqueID": "id-29179",
-          "name": "Geometry",
-          "type": "number"
-        },
-        {
-          "atomType": "Input",
-          "x": 0.025384615384615384,
-          "y": 0.24615384615384617,
-          "uniqueID": "id-29180",
-          "name": "Scale Factor",
-          "type": "number"
-        },
-        {
-          "atomType": "Code",
-          "x": 0.4226190476190476,
-          "y": 0.25139664804469275,
-          "uniqueID": "id-29181",
-          "ioValues": [
-            {
-              "name": "inputShape",
-              "ioValue": "__GEOMETRY_INPUT__"
-            },
-            {
-              "name": "scaleFactor",
-              "ioValue": "__GEOMETRY_INPUT__"
-            }
-          ],
-          "interpreterVersion": 0,
-          "code": " \n      //Inputs:[inputShape, scaleFactor]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n      \n      //Takes the address and gets the shape from the library\n      let importedShape = library[inputShape]\n\n      let scaledShape = await Scale(inputShape, scaleFactor);\n      \n      \n      //Shapes stored in the library have tags, a color, a plane, and a bill of materials like this. We don't modify them here\n      let shape1 = {\n        geometry: [scaledShape],\n        tags: importedShape.tags,\n        color: importedShape.color,\n        plane: importedShape.plane,\n        bom: importedShape.bom\n      }\n      \n      return shape1\n      \n      \n      \n          /**\n          To Use the Code Atom, enter your inputs to the input list a.e Inputs:[shape, height]\n          If your input is connected to another atom with a replicad geometry you can access its geometry by looking up its ID in your library. a.e library[Input1].geometry[0] \n          Use any replicad available methods to modify your geometry. Learn more about all of the available methods at \n          https://replicad.xyz/docs/introapp/UserGuide.html \n          Return a replicad object that includes geometry, color, tags and plane. \n      \n      \n          Example Code Atom:\n      \n            Inputs:[shape, x];\n      \n            let finalShape = library[shape].geometry[0].clone.translate[x,0,0]\n      \n            return {geometry: finalShape, color: library[shape].color, plane: library[shape].plane, tags: library[shape].tags }\n      \n            - See more examples at _______ \n      \n      \n          */\n      "
-        }
-      ],
-      "allConnectors": [
-        {
-          "ap2Name": "inputShape",
-          "ap1ID": "id-29179",
-          "ap2ID": "id-29181"
-        },
-        {
-          "ap2Name": "scaleFactor",
-          "ap1ID": "id-29180",
-          "ap2ID": "id-29181"
-        },
-        {
-          "ap2Name": "number or geometry",
-          "ap1ID": "id-29181",
-          "ap2ID": "id-29178"
-        }
-      ],
-      "parentRepo": {
-        "lastFoundGit": "2026-05-29T18:23:39.112Z",
-        "privateRepo": false,
-        "repoName": "Scale",
-        "dateCreated": "2025-06-26T17:06:11Z",
-        "likes": 0,
-        "readMe": "https://raw.githubusercontent.com/BarbourSmith/Scale/master/README.md?sanitize=true",
-        "yyyy": 2025,
-        "topMoleculeID": "4b6bc40a-44a9-438a-9ed9-ba4910815d8d",
-        "githubMoleculesUsed": [],
-        "html_url": "https://github.com/BarbourSmith/Scale",
-        "topics": [],
-        "parentRepo": null,
-        "forks": 1,
-        "dateModified": "739428",
-        "ranking": 4.1,
-        "searchField": "scale barboursmith scales the input 2d or 3d geometry by the scale factor ",
-        "owner": "BarbourSmith",
-        "description": "Scales the input 2D or 3D geometry by the scale factor",
-        "contentURL": "https://raw.githubusercontent.com/BarbourSmith/Scale/master/project.abundance?sanitize=true",
-        "svgURL": "https://raw.githubusercontent.com/BarbourSmith/Scale/master/project.svg?sanitize=true",
-        "isLocal": false
-      },
-      "unitsKey": "Unitless",
-      "fileTypeVersion": 1,
-      "lastReloadedFromGithubAt": 1780086719006
-    },
-    {
-      "atomType": "Export",
-      "x": 0.5455729166666666,
-      "y": 0.7971428571428572,
-      "uniqueID": "id-29194",
-      "ioValues": [
-        {
-          "name": "geometry",
-          "ioValue": "__GEOMETRY_INPUT__"
-        },
-        {
-          "name": "File Type",
-          "ioValue": "STEP",
-          "currentEquation": "STEP"
-        },
-        {
-          "name": "Resolution (dpi)",
-          "ioValue": 96
-        },
-        {
-          "name": "Part Name",
-          "ioValue": "ElTorolarger",
-          "currentEquation": "ElTorolarger"
-        }
-      ],
-      "type": "STEP",
-      "resolution": 96,
-      "importIndex": 0,
-      "partName": "ElTorolarger"
     }
   ],
   "allConnectors": [
@@ -5134,19 +4953,14 @@
       "ap2ID": "id-21144"
     },
     {
-      "ap2Name": "HullShape",
-      "ap1ID": "id-25958",
-      "ap2ID": "id-21144"
-    },
-    {
       "ap2Name": "geometry",
       "ap1ID": "id-12247",
       "ap2ID": "id-25945"
     },
     {
-      "ap2Name": "Geometry",
+      "ap2Name": "HullShape",
       "ap1ID": "id-12247",
-      "ap2ID": "id-29182"
+      "ap2ID": "id-21144"
     },
     {
       "ap2Name": "Lines",
@@ -5162,11 +4976,6 @@
       "ap2Name": "number or geometry",
       "ap1ID": "id-5823",
       "ap2ID": "id-997"
-    },
-    {
-      "ap2Name": "geometry",
-      "ap1ID": "id-29182",
-      "ap2ID": "id-29194"
     }
   ],
   "unitsKey": "Inches",
