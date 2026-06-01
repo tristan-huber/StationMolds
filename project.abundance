@@ -31,8 +31,7 @@
     },
     {
       "name": "HullMaterialThickness",
-      "ioValue": 0.25,
-      "currentEquation": "0.25"
+      "ioValue": 0.25
     },
     {
       "name": "HullModel",
@@ -91,8 +90,8 @@
     },
     {
       "atomType": "Move",
-      "x": 0.5,
-      "y": 0.5,
+      "x": 0.4915364583333333,
+      "y": 0.22023809523809526,
       "uniqueID": "id-25945",
       "ioValues": [
         {
@@ -3259,8 +3258,8 @@
         },
         {
           "atomType": "Assembly",
-          "x": 0.6412760416666666,
-          "y": 0.6742857142857143,
+          "x": 0.677734375,
+          "y": 0.7083333333333333,
           "uniqueID": "id-13267",
           "ioValues": [
             {
@@ -3398,8 +3397,8 @@
         },
         {
           "atomType": "Move",
-          "x": 0.5442708333333334,
-          "y": 0.7171428571428571,
+          "x": 0.52734375,
+          "y": 0.7261904761904762,
           "uniqueID": "id-30508",
           "ioValues": [
             {
@@ -3408,11 +3407,8 @@
             },
             {
               "name": "xDist",
-              "ioValue": 0
-            },
-            {
-              "name": "yDist",
-              "ioValue": 33.009306565747494
+              "ioValue": 0,
+              "currentEquation": "0"
             },
             {
               "name": "zDist",
@@ -3426,12 +3422,6 @@
           "y": 0.8085714285714286,
           "uniqueID": "id-30514",
           "name": "x * 1.5",
-          "ioValues": [
-            {
-              "name": "x",
-              "ioValue": 22.006204377164998
-            }
-          ],
           "currentEquation": "x * 1.5"
         },
         {
@@ -3456,14 +3446,6 @@
                 "180",
                 "200"
               ]
-            },
-            {
-              "name": "Beam",
-              "ioValue": 22.006204377164998
-            },
-            {
-              "name": "KeelHeight",
-              "ioValue": 12.566486846297071
             },
             {
               "name": "BowAngle",
@@ -3494,17 +3476,7 @@
               "atomType": "Rectangle",
               "x": 0.15169270833333334,
               "y": 0.37714285714285717,
-              "uniqueID": "id-9279",
-              "ioValues": [
-                {
-                  "name": "x length",
-                  "ioValue": 12.566486846297071
-                },
-                {
-                  "name": "y length",
-                  "ioValue": 22.006204377164998
-                }
-              ]
+              "uniqueID": "id-9279"
             },
             {
               "atomType": "Extrude",
@@ -3704,10 +3676,6 @@
                 {
                   "name": "yDist",
                   "ioValue": 0
-                },
-                {
-                  "name": "zDist",
-                  "ioValue": 6.2832434231485355
                 }
               ]
             },
@@ -3717,12 +3685,6 @@
               "y": 0.7942857142857144,
               "uniqueID": "id-30504",
               "name": "x /2",
-              "ioValues": [
-                {
-                  "name": "x",
-                  "ioValue": 12.566486846297071
-                }
-              ],
               "currentEquation": "x /2"
             },
             {
@@ -5138,6 +5100,22 @@
             }
           ],
           "fileTypeVersion": 1
+        },
+        {
+          "atomType": "Tag",
+          "x": 0.609375,
+          "y": 0.4910714285714286,
+          "uniqueID": "id-31147",
+          "name": "stations",
+          "ioValues": [
+            {
+              "name": "geometry",
+              "ioValue": "__GEOMETRY_INPUT__"
+            }
+          ],
+          "tags": [
+            "stations"
+          ]
         }
       ],
       "allConnectors": [
@@ -5157,14 +5135,14 @@
           "ap2ID": "id-30508"
         },
         {
-          "ap2Name": "Shape 2",
+          "ap2Name": "geometry",
           "ap1ID": "id-9267",
-          "ap2ID": "id-13267"
+          "ap2ID": "id-14806"
         },
         {
           "ap2Name": "geometry",
           "ap1ID": "id-9267",
-          "ap2ID": "id-14806"
+          "ap2ID": "id-31147"
         },
         {
           "ap2Name": "number or geometry",
@@ -5220,9 +5198,58 @@
           "ap2Name": "geometry1",
           "ap1ID": "id-9275",
           "ap2ID": "id-9267"
+        },
+        {
+          "ap2Name": "Shape 2",
+          "ap1ID": "id-31147",
+          "ap2ID": "id-13267"
         }
       ],
       "fileTypeVersion": 1
+    },
+    {
+      "atomType": "Export",
+      "x": 0.7701822916666666,
+      "y": 0.7053571428571429,
+      "uniqueID": "id-31142",
+      "ioValues": [
+        {
+          "name": "geometry",
+          "ioValue": "__GEOMETRY_INPUT__"
+        },
+        {
+          "name": "File Type",
+          "ioValue": "STEP",
+          "currentEquation": "STEP"
+        },
+        {
+          "name": "Resolution (dpi)",
+          "ioValue": 96
+        },
+        {
+          "name": "Part Name",
+          "ioValue": "StationMolds",
+          "currentEquation": "StationMolds"
+        }
+      ],
+      "type": "STEP",
+      "resolution": 96,
+      "importIndex": 0,
+      "partName": "StationMolds"
+    },
+    {
+      "atomType": "ExtractTag",
+      "x": 0.681640625,
+      "y": 0.6636904761904763,
+      "uniqueID": "id-31150",
+      "name": "Extract Tag",
+      "ioValues": [
+        {
+          "name": "geometry",
+          "ioValue": "__GEOMETRY_INPUT__"
+        }
+      ],
+      "tagIndex": 0
     }
   ],
   "allConnectors": [
@@ -5265,6 +5292,16 @@
       "ap2Name": "number or geometry",
       "ap1ID": "id-5823",
       "ap2ID": "id-997"
+    },
+    {
+      "ap2Name": "geometry",
+      "ap1ID": "id-5823",
+      "ap2ID": "id-31150"
+    },
+    {
+      "ap2Name": "geometry",
+      "ap1ID": "id-31150",
+      "ap2ID": "id-31142"
     }
   ],
   "unitsKey": "Inches",
