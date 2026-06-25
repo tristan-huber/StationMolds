@@ -146,8 +146,8 @@
     },
     {
       "atomType": "CutOrient",
-      "x": 0.7037760416666667,
-      "y": 0.5599999999999999,
+      "x": 0.6549479166666667,
+      "y": 0.48571428571428577,
       "uniqueID": "id-31497",
       "name": "Cut Orient",
       "ioValues": [
@@ -186,8 +186,8 @@
     },
     {
       "atomType": "GitHubMolecule",
-      "x": 0.6940104166666666,
-      "y": 0.24,
+      "x": 0.7994791666666667,
+      "y": 0.21142857142857144,
       "uniqueID": "id-31505",
       "name": "IthFromAssembly",
       "ioValues": [
@@ -2838,8 +2838,8 @@
     },
     {
       "atomType": "CutLayout",
-      "x": 0.8144531250000001,
-      "y": 0.5771428571428572,
+      "x": 0.759765625,
+      "y": 0.4714285714285715,
       "uniqueID": "id-31865",
       "name": "Cut Layout",
       "ioValues": [
@@ -2872,7 +2872,7 @@
             "rotate": 210,
             "translate": {
               "x": 41.9340705871582,
-              "y": 42.458065032958984
+              "y": 42.5
             }
           },
           {
@@ -2969,6 +2969,41 @@
       ],
       "partName": "StationMolds",
       "sortDirection": "Left"
+    },
+    {
+      "atomType": "Gcode",
+      "x": 0.908203125,
+      "y": 0.3514285714285714,
+      "uniqueID": "id-31883",
+      "ioValues": [
+        {
+          "name": "geometry",
+          "ioValue": "__GEOMETRY_INPUT__"
+        },
+        {
+          "name": "Tool Size",
+          "ioValue": 0.25
+        },
+        {
+          "name": "Passes",
+          "ioValue": 2
+        },
+        {
+          "name": "Speed",
+          "ioValue": 1500
+        },
+        {
+          "name": "Cut Through",
+          "ioValue": 0
+        },
+        {
+          "name": "Part Name",
+          "ioValue": "StationMolds",
+          "currentEquation": "StationMolds"
+        }
+      ],
+      "partName": "StationMolds",
+      "sortDirection": "Left"
     }
   ],
   "allConnectors": [
@@ -2995,17 +3030,17 @@
     {
       "ap2Name": "geometry",
       "ap1ID": "id-31150",
-      "ap2ID": "id-31505"
-    },
-    {
-      "ap2Name": "geometry",
-      "ap1ID": "id-31150",
       "ap2ID": "id-31497"
     },
     {
       "ap2Name": "geometry",
       "ap1ID": "id-31497",
       "ap2ID": "id-31865"
+    },
+    {
+      "ap2Name": "geometry",
+      "ap1ID": "id-31505",
+      "ap2ID": "id-31883"
     },
     {
       "ap2Name": "HullForm",
@@ -3031,6 +3066,11 @@
       "ap2Name": "number or geometry",
       "ap1ID": "id-31865",
       "ap2ID": "id-997"
+    },
+    {
+      "ap2Name": "geometry",
+      "ap1ID": "id-31865",
+      "ap2ID": "id-31505"
     }
   ],
   "unitsKey": "Inches",
