@@ -88,7 +88,7 @@
     {
       "atomType": "Input",
       "x": 0.025384615384615384,
-      "y": 0.5230769230769231,
+      "y": 0.6285714285714286,
       "uniqueID": "id-25958",
       "name": "HullModel",
       "type": "import",
@@ -2950,11 +2950,12 @@
         },
         {
           "name": "Passes",
-          "ioValue": 1
+          "ioValue": 2
         },
         {
           "name": "Speed",
-          "ioValue": 1500
+          "ioValue": 1500,
+          "currentEquation": "1500"
         },
         {
           "name": "Cut Through",
@@ -3017,11 +3018,6 @@
       "ap2ID": "id-5823"
     },
     {
-      "ap2Name": "number or geometry",
-      "ap1ID": "id-5823",
-      "ap2ID": "id-997"
-    },
-    {
       "ap2Name": "geometry",
       "ap1ID": "id-5823",
       "ap2ID": "id-31150"
@@ -3030,6 +3026,11 @@
       "ap2Name": "geometry",
       "ap1ID": "id-31865",
       "ap2ID": "id-31876"
+    },
+    {
+      "ap2Name": "number or geometry",
+      "ap1ID": "id-31865",
+      "ap2ID": "id-997"
     }
   ],
   "unitsKey": "Inches",
